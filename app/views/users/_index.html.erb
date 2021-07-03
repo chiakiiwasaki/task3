@@ -3,6 +3,9 @@
     <tr>
       <th>image</th>
       <th>name</th>
+      <th></th>
+      <th></th>
+      <th></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -11,8 +14,32 @@
       <tr>
         <td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
         <td><%= user.name %></td>
+        <td>フォロー数: <%= user.following.count %></td>
+        <td>フォロワー数: <%= user.followers.count %></td>
+        <td class="follow-btn">
+          <% if user != current_user %>
+            <% if current_user.following?(user) %>
+              <%= form_with(model: current_user.active_relationships.find_by(followed_id: user.id), html: { method: :delete }, local: true) do |f| %>
+                <%= f.submit "フォロー外す", class: "btn btn-link" %>
+              <% end %>
+            <% else %>
+              <%= form_with(model: current_user.active_relationships.build, local: true) do |f| %>
+                <%= hidden_field_tag :followed_id, user.id %>
+                <%= f.submit "フォローする", class: "btn btn-link" %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </td>
+
         <td><%= link_to 'Show', user_path(user), class: "user_#{user.id}" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<style>
+  .follow-btn {
+    display: flex;
+    padding-top: 0 !important;
+  }
+</style>
