@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
     end
+
   end
   resources :books do
     resource :favorites, only: [:create, :destroy]
@@ -13,4 +14,6 @@ Rails.application.routes.draw do
 
   root 'homes#top'
   get 'home/about' => 'homes#about'
+
+  get 'search' => "search#search"
 end

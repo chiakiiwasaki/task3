@@ -22,4 +22,16 @@
       </div>
     </div>
   </nav>
+  <% if user_signed_in? %>
+    <div class="search-btn"><%= render 'search/search' %></div>
+  <% end %>
 </header>
+
+
+
+<style>
+  .search-btn{
+    text-align: center;
+    margin-top: 5px;
+  }
+</style>
