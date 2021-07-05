@@ -6,6 +6,7 @@
       <h2 class="mt-3">New book</h2>
       <%= render 'form', book: @book_new %>
     </div>
+
     <div class='col-md-8 offset-md-1'>
   		<h2>Book detail</h2>
   		<table class='table'>
@@ -17,20 +18,8 @@
           </td>
           <td><%= link_to @book.title, book_path(@book) %></td>
           <td><%= @book.body %></td>
-          <td>
-            <% if @book.favorited_by?(current_user) %>
-              <p>
-                <%= link_to book_favorites_path(@book), method: :delete do %>
-                  <i class="fas fa-heart unlike-btn" ><%= @book.favorites.count %></i>
-                <% end %>
-              </p>
-            <% else %>
-              <p>
-                <%= link_to book_favorites_path(@book), method: :post do %>
-                  <i class="fas fa-heart like-btn" ><%= @book.favorites.count %></i>
-                <% end %>
-              </p>
-            <% end %>
+          <td id="favorite-btn">
+            <%= render 'favorites/favorite-btn', book: @book %>
           </td>
           <td>コメント数：<%= @book.book_comments.count %></td>
           <% if @book.user == current_user %>
