@@ -1,0 +1,2 @@
+$('#book-comments-form').html("<%= j(render partial: 'book_comments/form', locals: {book: @book, book_comment: @book_comment}) %>");
+$('#book-comments-index').html("<%= j(render partial: 'book_comments/index', locals: {book: @book}) %>");
