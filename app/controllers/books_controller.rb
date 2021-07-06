@@ -8,9 +8,11 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
     @book = Book.new
+    @books = Book.includes(:favorites).sort {|a,b| b.favorites.size <=> a.favorites.size}
+    # @books = Book.joins(:favorites).where(favorites: { created_at: 1.week.ago.beginning_of_day..Time.zone.now.end_of_day}).group(:id).order("count(*) desc")
   end
+
 
   def create
     @book = Book.new(book_params)
