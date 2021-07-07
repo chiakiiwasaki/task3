@@ -24,6 +24,7 @@ class BooksController < ApplicationController
         @entry = Entry.new
       end
     end
+    impressionist(@book, nil)
   end
 
   def index

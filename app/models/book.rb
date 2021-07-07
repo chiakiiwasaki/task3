@@ -22,6 +22,8 @@ class Book < ApplicationRecord
   		@book = Book.where("title LIKE ?", "%#{words}%")
   	end
   end
+  
+  is_impressionable count_cache: true
 
 
 end
