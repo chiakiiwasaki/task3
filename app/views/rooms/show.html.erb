@@ -1,0 +1,20 @@
+<h2>
+  <% @entries.each do |e| %>
+    <%= e.user.name %>さん
+  <% end %>
+とのチャット</h2>
+
+<div class="message" style="width: 400px; margin: 0 auto;">
+  <% @messages.each do |m| %>
+    <% if m.user_id == current_user.id %>
+      <p style="text-align: right"><%= m.content %></p>
+    <% else %>
+      <p style="text-align: left"><%= m.content %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<%= form_for @message do |f| %>
+  <%= f.text_field :content %>
+  <%= f.hidden_field :room_id, :value => @room.id %>
+<% end %>

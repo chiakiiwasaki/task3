@@ -21,6 +21,7 @@
 <div class='row'>
   <% if user == current_user %>
     <%= link_to '',edit_user_path(user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>
+
   <% else %>
     <div id="follow_form">
     <% if current_user.following?(user) %>
@@ -31,6 +32,18 @@
       <%= form_with(model: current_user.active_relationships.build, local: true) do |f| %>
         <div><%= hidden_field_tag :followed_id, user.id %></div>
         <%= f.submit "フォローする", class: "btn btn-success" %>
+      <% end %>
+    <% end %>
+    <% if (current_user.following?(user)) && (user.following?(current_user)) %>
+      <% if @isRoom == true %>
+        <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-link">チャットへ</a>
+      <% else %>
+        <%= form_for @room do |f| %>
+          <%= fields_for @entry do |e| %>
+            <%= e.hidden_field :user_id, :value=> user.id %>
+          <% end %>
+          <%= f.submit "chatを始める", class: "btn btn-link" %>
+        <% end %>
       <% end %>
     <% end %>
     </div>
