@@ -7,6 +7,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
+    now = Time.current
+    @item6 = @books.where(created_at: (now-6.day).at_beginning_of_day..(now-6.day).at_end_of_day).count
+    @item5 = @books.where(created_at: (now-5.day).at_beginning_of_day..(now-5.day).at_end_of_day).count
+    @item4 = @books.where(created_at: (now-4.day).at_beginning_of_day..(now-4.day).at_end_of_day).count
+    @item3 = @books.where(created_at: (now-3.day).at_beginning_of_day..(now-3.day).at_end_of_day).count
+    @item2 = @books.where(created_at: (now-2.day).at_beginning_of_day..(now-2.day).at_end_of_day).count
+    @item1 = @books.where(created_at: (now-1.day).at_beginning_of_day..(now-1.day).at_end_of_day).count
+    @item0 = @books.where(created_at: now.at_beginning_of_day..now.at_end_of_day).count
+    gon.data = @item6, @item5, @item4, @item3, @item2, @item1, @item0
   end
 
   def index

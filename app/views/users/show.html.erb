@@ -10,6 +10,38 @@
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <%= render 'books/index',books: @books %>
+
+      <h3>7日間分の投稿数</h3>
+      <table border="1" width="100%" cellpadding="10">
+        <thead>
+          <tr>
+            <th>6日前</th>
+            <th>5日前</th>
+            <th>4日前</th>
+            <th>3日前</th>
+            <th>2日前</th>
+            <th>1日前</th>
+            <th>今日</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @item6 %></td>
+            <td><%= @item5 %></td>
+            <td><%= @item4 %></td>
+            <td><%= @item3 %></td>
+            <td><%= @item2 %></td>
+            <td><%= @item1 %></td>
+            <td><%= @item0 %></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <p style="text-align: center;">７日間の投稿数の比較</p>
+      <canvas id="myChart" width="100%" height="50"></canvas>
+      <script>draw_graph();</script>
     </div>
   </div>
 </div>
+
+
