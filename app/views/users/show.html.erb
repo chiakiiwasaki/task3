@@ -10,6 +10,42 @@
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <%= render 'books/index',books: @books %>
+      <h3>投稿数の前日比・前週比</h3>
+      <table border="1" width="80%" cellpadding="10">
+        <thead>
+          <tr>
+            <th>今日の投稿数</th>
+            <th>前日の投稿数</th>
+            <th>前日比</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @books_day %></td>
+            <td><%= @books_yesterday %></td>
+            <td><%= @difference %>%</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <table border="1" width="80%" cellpadding="10">
+        <thead>
+          <tr>
+            <th>今週の投稿数</th>
+            <th>前週の投稿数</th>
+            <th>前週比</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @books_week %></td>
+            <td><%= @books_prev_week %></td>
+            <td><%= @week_difference %>%</td>
+          </tr>
+        </tbody>
+      </table>
+
     </div>
   </div>
 </div>
+
