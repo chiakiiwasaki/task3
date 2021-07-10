@@ -46,4 +46,7 @@ class User < ApplicationRecord
     end
   end
 
+  has_many :group_users, dependent: :destroy
+  has_many :groups, through: :group_users, dependent: :destroy
+
 end

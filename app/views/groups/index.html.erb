@@ -1,0 +1,21 @@
+<h2>Groups</h2>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>グループ名</th>
+      <th>紹介文</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= @group_lists.each do |list| %>
+    <tr>
+      <td><%= attachment_image_tag(list, :image_id, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
+      <td><%= list.name %></td>
+      <td><%= list.introduction %></td>
+      <td><%= link_to '編集', edit_group_path(list.id), method: :get %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

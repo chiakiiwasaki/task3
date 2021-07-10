@@ -1,0 +1,21 @@
+<h2>Group Detail</h2>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>グループ名</th>
+      <th>紹介文</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= @group.group_users.each do |list| %>
+      <tr>
+        <td><%#= attachment_image_tag(list, :image_id, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
+        <td><%= list.user.name %></td>
+        <td><%= list.user.introduction %></td>
+        <td><%= link_to '編集', edit_group_path(list.id), method: :get %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
