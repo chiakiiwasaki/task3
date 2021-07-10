@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
 
   def index
+    @book = Book.new
     @group_lists = Group.all
   end
 
@@ -19,6 +20,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @book = Book.new
     @group = Group.find(params[:id])
   end
 
@@ -38,6 +40,6 @@ class GroupsController < ApplicationController
 
   private
   def group_params
-    params.require(:group).permit(:name, :introduction, :image_id, user_ids: [])
+    params.require(:group).permit(:name, :introduction, :image, user_ids: [])
   end
 end
